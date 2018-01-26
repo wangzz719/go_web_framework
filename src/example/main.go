@@ -8,9 +8,8 @@ import (
 )
 
 func main() {
-	helloWorldHandler := handlers.HelloWorldHandler{BaseHandler: basehandler.BaseHandler{}}
 	routers := []*router.Router{
-		{Path: "/hello", Handler: &helloWorldHandler},
+		{Path: "/hello", Handler: &handlers.HelloWorldHandler{BaseHandler: basehandler.BaseHandler{}}},
 	}
 
 	app := application.NewApplication(routers)

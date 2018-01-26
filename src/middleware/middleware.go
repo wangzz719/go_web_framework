@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func PatchHandle(fn httprouter.Handle) httprouter.Handle {
+func MiddlewareHandle(fn httprouter.Handle) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 		defer func() {
 			if e, ok := recover().(error); ok {

@@ -15,13 +15,13 @@ type Application struct {
 func NewApplication(routers []*router.Router) *Application {
 	appRouter := httprouter.New()
 	for _, r := range routers {
-		appRouter.GET(r.Path, middleware.PatchHandle(r.Handler.GET))
-		appRouter.POST(r.Path, middleware.PatchHandle(r.Handler.POST))
-		appRouter.PUT(r.Path, middleware.PatchHandle(r.Handler.PUT))
-		appRouter.PATCH(r.Path, middleware.PatchHandle(r.Handler.PATCH))
-		appRouter.HEAD(r.Path, middleware.PatchHandle(r.Handler.HEAD))
-		appRouter.OPTIONS(r.Path, middleware.PatchHandle(r.Handler.OPTIONS))
-		appRouter.DELETE(r.Path, middleware.PatchHandle(r.Handler.DELETE))
+		appRouter.GET(r.Path, middleware.MiddlewareHandle(r.Handler.GET))
+		appRouter.POST(r.Path, middleware.MiddlewareHandle(r.Handler.POST))
+		appRouter.PUT(r.Path, middleware.MiddlewareHandle(r.Handler.PUT))
+		appRouter.PATCH(r.Path, middleware.MiddlewareHandle(r.Handler.PATCH))
+		appRouter.HEAD(r.Path, middleware.MiddlewareHandle(r.Handler.HEAD))
+		appRouter.OPTIONS(r.Path, middleware.MiddlewareHandle(r.Handler.OPTIONS))
+		appRouter.DELETE(r.Path, middleware.MiddlewareHandle(r.Handler.DELETE))
 	}
 	return &Application{router: appRouter}
 }
